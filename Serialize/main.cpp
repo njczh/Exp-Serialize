@@ -1,7 +1,20 @@
 #include <cstdio>
+#include "ObjectA.h"
 
 int main()
 {
-    printf("hello from Serialize!\n");
-    return 0;
+
+	{
+		ObjectA objectA(10);
+		objectA.Serialize("data");
+	}
+
+	{
+		ObjectA objectA;
+		objectA.Deserialize("data");
+		objectA.Print();
+	}
+
+	return 0;
+
 }
