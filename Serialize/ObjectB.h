@@ -27,7 +27,10 @@ public:
 	bool Deserialize(const int fd);
 
 	// version 3.0
-	void getType(int &type);
+	int  getType();
+
+	// version 4.0
+	Serializable* DeserializeT(const int fd);
 
 public:
 	void Print() const;

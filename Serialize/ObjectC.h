@@ -4,18 +4,23 @@
 
 #include "Serializable.h"
 
-class ObjectA :
+class ObjectC :
 	public Serializable
 {
 private:
-	int		i_a;
-	char	c_a;
-	double	d_a;
+  int i_c1;
+  int i_c2;  
+
+  char c_c1;
+  char c_c2;
+  
+  double d_c1;
+  double d_c2;
 
 public:
-	ObjectA();
-	ObjectA(int, char, double);
-	~ObjectA();
+	ObjectC();
+	ObjectC(int, int, char, char, double, double);
+	~ObjectC();
 
 public:
 	// version 1.0

@@ -113,8 +113,19 @@ bool ObjectB::Deserialize(const int fd)
 
 // version 3.0
 // description：获取类型以区分不同类对象
-void ObjectB::getType(int & type)
+int ObjectB::getType()
 {
-	type = 2;
+	return 2;
+}
+
+// version 4.0
+Serializable * ObjectB::DeserializeT(const int fd)
+{
+	ObjectB * object = new ObjectB();
+
+	if (object->Deserialize(fd))
+		return object;
+	else
+		return nullptr;
 }
 

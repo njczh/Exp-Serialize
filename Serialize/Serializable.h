@@ -10,6 +10,8 @@ public:
 	// 由文件描述符表示的文件反序列化
 	virtual bool Deserialize(const int fd) = 0;
 	// 获取类型以区分不同类对象
-	virtual void getType(int &type) = 0;
+	virtual int getType() = 0;
+	// 由文件描述符表示的文件反序列化，并返回该对象指针
+	virtual Serializable* DeserializeT(const int fd) = 0;
 };
 

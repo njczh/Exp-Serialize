@@ -113,8 +113,20 @@ bool ObjectA::Deserialize(const int fd)
 
 // version 3.0
 // description：获取类型以区分不同类对象
-void ObjectA::getType(int & type)
+int ObjectA::getType()
 {
-	type = 1;
+	return 1;
+}
+
+// version 4.0
+// desription：由文件描述符表示的文件反序列化，并返回该对象指针
+Serializable * ObjectA::DeserializeT(const int fd)
+{
+	ObjectA * object = new ObjectA();
+
+	if (object->Deserialize(fd))
+		return object;
+	else
+		return nullptr;
 }
 

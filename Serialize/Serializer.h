@@ -6,8 +6,6 @@
 using namespace std;
 
 #include "Serializable.h"
-#include "ObjectA.h"
-#include "ObjectB.h"
 
 class Serializer
 {
@@ -17,4 +15,10 @@ public:
 public:
 	bool Serialize(const vector<Serializable*>&, const char *pFilePath = FILEPATH);
 	bool Deserialize(vector<Serializable*>&, const char *pFilePath = FILEPATH);
+
+public:
+	void RegisterType(Serializable*);
+
+private:
+	vector<Serializable*> typeTable;
 };

@@ -15,8 +15,7 @@ bool Serializer::Serialize(const vector<Serializable*>& objects, const char *pFi
 
 	for (int i = 0; i < objects.size(); i++) 
 	{
-		int type;
-		objects[i]->getType(type);
+		int type = objects[i]->getType();
 		if (write(fd, &type, sizeof(int)) == -1) 
 		{
 			result = false;
@@ -30,7 +29,8 @@ bool Serializer::Serialize(const vector<Serializable*>& objects, const char *pFi
 		}
 	}
 
-	if (close(fd) == -1) result = false;
+	if (close(fd) == -1) 
+		result = false;
 
 	return result;
 }
@@ -38,38 +38,49 @@ bool Serializer::Serialize(const vector<Serializable*>& objects, const char *pFi
 bool Serializer::Deserialize(vector<Serializable*>& objects, const char *pFilePath)
 {
 	bool result = true;
-	//多个对象存在同一个文件中，使用同一个文件描述符，保证指针正确偏移
+	/* 多个对象存在同一个文件中，使用同一个文件描述符，保证指针正确偏移 */
 	int fd = open(pFilePath, O_RDWR);
 	if (fd == -1)
 		return false;
 
 	while (result)
 	{
-		int type;
+		int type, i;
+		/* 反序列化类对象类型 */
 		if (read(fd, &type, sizeof(int)) == -1)
 			result = false;
 
-		Serializable * pObject;
-		switch (type)
+		for (i = 0; i < typeTable.size(); i++)
 		{
-		case 1:
-			pObject = new ObjectA();
-			break;
-		case 2:
-			pObject = new ObjectB();
-			break;
-		default:
-			result = false;
-			break;
+			/* 根据类型，去类型表里找到相应的反序列化方法 */
+			if (typeTable[i]->getType() == type) 
+			{
+				Serializable * pObject = typeTable[i]->DeserializeT(fd);
+
+				if (pObject != nullptr) 
+					objects.push_back(pObject); 
+				else
+					result = false; 
+	
+				break;
+			} 
 		}
-		if (pObject->Deserialize(fd))
-			objects.push_back(pObject);
-		else
-			break;
+
+		/* 如果没找到，失败退出 */
+		if (i == typeTable.size())
+			result = false;
 	}
 
-	if (close(fd) == -1) result = false;
+	if (close(fd) == -1) 
+		result = false;
 
 	return result;
 
+}
+
+// version 4.0 
+// description：不同类类型注册
+void Serializer::RegisterType(Serializable *type)
+{
+	this->typeTable.push_back(type);
 }
