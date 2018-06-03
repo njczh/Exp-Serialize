@@ -1,23 +1,32 @@
 #pragma once
 
-#include "MyObject.h"
-
-#include <fcntl.h>
-#include <unistd.h>
 #include <iostream>
-using namespace std;
+
+#include "Serializable.h"
 
 class ObjectA :
-	public MyObject
+	public Serializable
 {
 private:
-	int a;
+	int		i_a;
+	char	c_a;
+	double	d_a;
+
 public:
 	ObjectA();
-	ObjectA(int);
+	ObjectA(int, char, double);
 	~ObjectA();
-	bool Serialize(const char*);
-	bool Deserialize(const char*);
-	void Print();
+
+public:
+	// version 1.0
+	bool Serialize(const char* pFilePath) const;
+	bool Deserialize(const char* pFilePath);
+
+	// version 2.0
+	bool Serialize(const int fd) const;
+	bool Deserialize(const int fd);
+
+public:
+	void Print() const;
 };
 

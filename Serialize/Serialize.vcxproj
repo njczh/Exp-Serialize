@@ -60,14 +60,19 @@
   <ImportGroup Label="Shared" />
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\Linux\include\usr\include;$(IncludePath);$(ISenseIncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MyObject.cpp" />
     <ClCompile Include="ObjectA.cpp" />
+    <ClCompile Include="Serializer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MyObject.h" />
     <ClInclude Include="ObjectA.h" />
+    <ClInclude Include="Serializable.h" />
+    <ClInclude Include="Serializer.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
