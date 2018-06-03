@@ -10,6 +10,9 @@
     <ClCompile Include="Serializer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectB.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Serializable.h">
@@ -20,6 +23,9 @@
     </ClInclude>
     <ClInclude Include="Serializer.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectB.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

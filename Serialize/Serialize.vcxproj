@@ -67,10 +67,12 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ObjectA.cpp" />
+    <ClCompile Include="ObjectB.cpp" />
     <ClCompile Include="Serializer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ObjectA.h" />
+    <ClInclude Include="ObjectB.h" />
     <ClInclude Include="Serializable.h" />
     <ClInclude Include="Serializer.h" />
   </ItemGroup>
