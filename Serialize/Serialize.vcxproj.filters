@@ -33,6 +33,9 @@
     <ClInclude Include="ObjectC.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="Socket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
